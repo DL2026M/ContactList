@@ -1,4 +1,5 @@
 public class Person {
+    // Instance Variables
     private String firstName;
     private String lastName;
     private String phoneNumber;

@@ -1,10 +1,12 @@
 public class KitchenStaff extends Person {
+    // Instance Variables
     private double salary;
     private int skillLevel;
     private String favoriteMeal;
 
     public KitchenStaff(String firstName, String lastName, String phoneNumber,
                         double salary, int skillLevel, String favoriteMeal) {
+        // Calling the superclass
         super(firstName, lastName, phoneNumber);
         this.salary = salary;
         this.skillLevel = skillLevel;
@@ -23,7 +25,7 @@ public class KitchenStaff extends Person {
         return favoriteMeal;
     }
     public String toString() {
-        return super.toString() + " Salary: $" + this.salary + " Skill Level: \n"
-                + this.skillLevel + " Favorite Meal: " + this.favoriteMeal;
+        return super.toString() + " Salary: $" + this.salary + " Skill Level: "+ this.skillLevel + "\n"
+                + "Favorite Meal: " + this.favoriteMeal;
     }
 }
