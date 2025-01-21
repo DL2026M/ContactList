@@ -57,40 +57,29 @@ public class ContactList {
         // Creates a temporary variable for swapping
         Person temp;
         int size = contacts.size();
-        ArrayList<String> searchList = new ArrayList<String>();
-        if (sortBy == 0) {
-            for (int i = 0; i < contacts.size(); i++) {
-                // Fills the search list with first names
-                searchList.add(contacts.get(i).getFirstName());
-            }
-        }
-         else if (sortBy == 1) {
-            for (int i = 0; i < contacts.size(); i++) {
-                // Fills the search list with last names
-                searchList.add(contacts.get(i).getLastName());
-            }
-        }
-        else if (sortBy == 2){
-            for (int i = 0; i < contacts.size(); i++) {
-                // Fills the search list with phone numbers
-                searchList.add(contacts.get(i).getPhoneNumber());
-            }
-        }
-            for (int i = 0; i < size - 1; i++) {
-                for (int j = 0; j < size - i - 1; j++) {
-                    if (searchList.get(j).compareTo(searchList.get(j+1)) > 0) {
-                        // Swap the order of the contacts if the lexicographic difference is positive
-                        temp = contacts.get(j);
-                        contacts.set(j, contacts.get(j+1));
-                        contacts.set(j+1, temp);
-                        // Also swaps the temporary search list as it is changing as well
-                        String searchListTemp = searchList.get(j);
-                        searchList.set(j, searchList.get(j+1));
-                        searchList.set(j+1, searchListTemp);
-                    }
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                // Creating a new variable every run through so the previous value doesn't get saved
+                int sortingVariable;
+                if (sortBy == 0) {
+                // Sets sorting equal to the lexicographic difference between the first names
+                    sortingVariable = (contacts.get(j).getFirstName().compareTo(contacts.get(j+1).getFirstName()));
+                }
+                else if (sortBy == 1) {
+                    sortingVariable = (contacts.get(j).getLastName().compareTo(contacts.get(j+1).getLastName()));
+                }
+                else {
+                    sortingVariable = (contacts.get(j).getPhoneNumber().compareTo(contacts.get(j+1).getPhoneNumber()));
+                }
+                // Swap the order of the contacts if the lexicographic difference is positive
+                if (sortingVariable > 0) {
+                    temp = contacts.get(j);
+                    contacts.set(j, contacts.get(j+1));
+                    contacts.set(j+1, temp);
                 }
             }
-            return contacts;
+        }
+        return contacts;
     }
     // Checks to see if the first name inputted by the user is a user
     public Person searchByFirstName(String firstName) {
